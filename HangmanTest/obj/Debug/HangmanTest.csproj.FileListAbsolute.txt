@@ -1,0 +1,17 @@
+E:\OOP\HangmanTest\obj\Debug\HangmanTest.csprojAssemblyReference.cache
+E:\OOP\HangmanTest\obj\Debug\HangmanTest.csproj.CoreCompileInputs.cache
+E:\OOP\HangmanTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+E:\OOP\HangmanTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+E:\OOP\HangmanTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+E:\OOP\HangmanTest\bin\Debug\HangmanTest.dll
+E:\OOP\HangmanTest\bin\Debug\HangmanTest.pdb
+E:\OOP\HangmanTest\bin\Debug\Hangman.exe
+E:\OOP\HangmanTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+E:\OOP\HangmanTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+E:\OOP\HangmanTest\bin\Debug\Hangman.pdb
+E:\OOP\HangmanTest\bin\Debug\Hangman.exe.config
+E:\OOP\HangmanTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+E:\OOP\HangmanTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+E:\OOP\HangmanTest\obj\Debug\HangmanTest.csproj.CopyComplete
+E:\OOP\HangmanTest\obj\Debug\HangmanTest.dll
+E:\OOP\HangmanTest\obj\Debug\HangmanTest.pdb
