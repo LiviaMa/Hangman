@@ -3,37 +3,37 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Hangman;
 using System.Collections.Generic;
 using System.Linq;
+using Moq;
 
 namespace HangmanTest
 {
     [TestClass]
     public class GameTest
     {
-       
+        Mock<IWordGenerator> mockWordGenerator;
+        Game game;
+
+    [TestInitialize]
+        public void Setup()
+        {
+            //arrange
+            mockWordGenerator = new Mock<IWordGenerator>();
+            mockWordGenerator.Setup(x => x.GenerateWord()).Returns("noodle");
+            game = new Game(mockWordGenerator.Object);
+        }
+
         [TestMethod]
         public void WhenGameStarts_CheckInitializedLives()
         {
             //arrange
-            var game = new Game();
             Assert.AreEqual(6, game.Lives);
-
+            mockWordGenerator.VerifyAll();
         }
-        [TestMethod]
-        public void WhenGameStarts_ValidateChoosedWord()
-        {
-            //arrange
-            var game = new Game();
-
-            //assert
-            Assert.IsTrue(Game.allWords.Contains(game.Word));
-            
-        }
+      
         [TestMethod]
         public void GuessNonExistingLetter_DecreasesLives()
         {
-            //arrange
-            var game = new Game();
-
+           
             //find a letter not contained in chosen word
             char letter;
             for (letter = 'a'; letter <= 'z'; letter++)
@@ -53,9 +53,7 @@ namespace HangmanTest
         [TestMethod]
         public void GuessExistingLetter_DoesNotDecreaseLives()
         {
-            //arrange
-            var game = new Game();
-
+           
             //find a letter contained in chosen word
             char letter;
             for (letter = 'a'; letter <= 'z'; letter++)
@@ -65,7 +63,7 @@ namespace HangmanTest
                     break;
                 }
             }
-            
+
             //act
             game.GuessLetter(letter);
 
@@ -74,20 +72,17 @@ namespace HangmanTest
         }
         [TestMethod]
         public void WhenGameBegins_CheckLettersHidden()
-        {   
+        {
             //arrange
-            var game = new Game();
             int count = game.RevealedLetters.Count(f => f == '_');
 
             Assert.AreEqual(game.RevealedLetters.Length, game.Word.Length);
             Assert.AreEqual(count, game.Word.Length);
-
         }
         [TestMethod]
         public void GuessExistingLetter_RevealGuessedLetter()
         {
             //arrange
-            var game = new Game();
             char letter;
             for (letter = 'a'; letter <= 'z'; letter++)
             {
@@ -108,32 +103,34 @@ namespace HangmanTest
         [TestMethod]
         public void WhenGameStarts_IsGameRunning()
         {
-            //arrange
-            var game = new Game();
-
             //assert
             Assert.IsTrue(game.IsGameRunning());
-
         }
 
         [TestMethod]
-        public void WhenGuessLetter_PutLetterOnAllPositionsForEachOccurance()
+        public void WhenGuessLetterWithMultipleOccurences_RevealAllPositions()
         {
-            //arrange
-            var game = new Game();
-
             //act
+            game.GuessLetter('o');
 
+            //assert
+            Assert.AreEqual("_oo___", game.RevealedLetters);
         }
 
         [TestMethod]
         public void WhenLivesZero_GameOver()
         {
             //arrange
-            var game = new Game();
-            
+            int lives = game.Lives;
+            lives = 0;
             //act
+            for (int i = 1; i <= 6; i++)
+            {
+                game.IsGameRunning();
+                game.Lives--;
+            }
 
+            Assert.AreEqual(lives, game.Lives);
         }
     }
 }

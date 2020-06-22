@@ -58,7 +58,11 @@ namespace Hangman
         }
         public bool IsGameRunning()
         {
-            return true;
+            if (Lives >= 1)
+            {
+                return true;
+            }
+            return false;
         }
 
         private bool IsValidInputFormat(char input)

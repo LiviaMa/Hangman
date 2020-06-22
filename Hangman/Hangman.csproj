@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileRandomWordGenerator.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="RandomWordGenerator.cs" />
     <Compile Include="IWordGenerator.cs" />

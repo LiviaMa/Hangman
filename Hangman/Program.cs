@@ -24,7 +24,7 @@ namespace Hangman
             }
             Console.WriteLine();
 
-            while (true)
+            while (game.Lives >= 1)
             {
                 Console.WriteLine("Pick one of the options below" + "\n1.Guess a letter\n2.Exit");
                 Console.WriteLine();
@@ -46,6 +46,10 @@ namespace Hangman
                     Console.WriteLine();
                     Console.WriteLine("Lives: " + game.Lives);
 
+                    if (!game.IsGameRunning())
+                    {
+                        Console.WriteLine("Game over!" + " You lost!");
+                    }
                 }
                 if (input == "2")
                 {
