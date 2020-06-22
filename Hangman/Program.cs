@@ -12,7 +12,8 @@ namespace Hangman
     {
         static void Main(string[] args)
         {
-            var game = new Game();
+            IWordGenerator wordGenerator = new RandomWordGenerator();
+            var game = new Game(wordGenerator);
 
             Console.WriteLine("Welcome to Hangman!");
             Console.WriteLine("You have " + game.Lives + " lives!");
@@ -37,6 +38,7 @@ namespace Hangman
                     Console.WriteLine("Enter your guess letter");
                     char letter = Console.ReadLine().ToCharArray()[0];
                     game.GuessLetter(letter);
+
                     for (int i = 0; i < game.RevealedLetters.Length; i++)
                     {
                         Console.Write(game.RevealedLetters[i] + " ");

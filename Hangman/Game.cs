@@ -16,39 +16,36 @@ namespace Hangman
 
         public static List<string> allWords;
 
-       public Game()
+       public Game(IWordGenerator generator)
         {
             Lives = 6;
-            Word = GetRandomWord();
+            Word = generator.GenerateWord();
             HideWord();
         }
+       
         static Game()
         {
             allWords = new List<string>() { "noodle", "food", "sound" };
         }
-        
-        public string GetRandomWord()
-        {
-            var random = new Random();
-            int index = random.Next(allWords.Count);
-            string element = allWords[index];
-            return element;
-        }
-       
+               
         public void GuessLetter(char letter)
         {
-            int index;
             if (!Word.Contains(letter))
             {
                 Lives--;
             }
             else
             {
-                index = Word.IndexOf(letter);
-                var sb = new StringBuilder(RevealedLetters);
-                sb[index] = letter;
-                ValidateInput(letter);
-                RevealedLetters = sb.ToString();
+                int index = Word.IndexOf(letter);
+
+                while (index != -1)
+                {
+                    var sb = new StringBuilder(RevealedLetters);
+                    sb[index] = letter;
+                    ValidateInput(letter);
+                    RevealedLetters = sb.ToString();
+                    index = Word.IndexOf(letter, index + 1);
+                }
             }
         }
 
